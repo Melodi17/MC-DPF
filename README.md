@@ -1,4 +1,4 @@
-# MC-DPF
+# MC-DPF (Minecraft Debug Player Finder)
 This is a small command-line utility for extracting coordinates from a multiplayer server's crash logs
 
 ### How it works
