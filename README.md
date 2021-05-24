@@ -6,7 +6,7 @@ I have found that when Minecraft Crashes and I was on a server, everyone on the 
 
 
 ### Keyboard shortcuts
-**Control+H** - Help
-**Control+B** - Restart and re-render screen
-**Control+Q** - Quit
-**Esc**               - Close menu (Only available in menus)
+**Control+H** - Help<br>
+**Control+B** - Restart and re-render screen<br>
+**Control+Q** - Quit<br>
+**Esc**               - Close menu (Only available in menus)<br>
