@@ -1,0 +1,13 @@
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\Debug Player Finder.exe
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\Debug Player Finder.deps.json
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\Debug Player Finder.runtimeconfig.json
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\Debug Player Finder.runtimeconfig.dev.json
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\Debug Player Finder.dll
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\Debug Player Finder.pdb
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.csprojAssemblyReference.cache
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.AssemblyInfoInputs.cache
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.AssemblyInfo.cs
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.csproj.CoreCompileInputs.cache
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.dll
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.pdb
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\obj\Release\netcoreapp3.1\Debug Player Finder.genruntimeconfig.cache

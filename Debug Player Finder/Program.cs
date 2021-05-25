@@ -147,46 +147,161 @@ namespace Debug_Player_Finder
                                     {
                                         if (File.Exists(debugFile))
                                         {
-                                            string[] file = File.ReadAllLines(debugFile);
-                                            int indexOfError = file.IndexOf("A detailed walkthrough of the error, its code path and all known details is as follows:");
-
-                                            if (indexOfError != -1)
+                                            try
                                             {
-                                                int indexOfCoods = file.SoftIndexOf("	All players: ");
-                                                if (indexOfCoods != -1)
-                                                {
-                                                    string unparsedLine = file[indexOfCoods];
-                                                    try
-                                                    {
-                                                        string startParsedLine = unparsedLine.Substring(unparsedLine.IndexOf("[") + 1);
-                                                        startParsedLine = startParsedLine.Remove(startParsedLine.Length - 1);
-                                                        string[] playersAsString = startParsedLine.Split("], ");
-                                                        List<Player> players = new List<Player>();
-                                                        foreach (string item in playersAsString)
-                                                        {
-                                                            players.Add(Player.Parse(item));
-                                                        }
+                                                string[] file = File.ReadAllLines(debugFile);
+                                                int indexOfError = file.IndexOf("A detailed walkthrough of the error, its code path and all known details is as follows:");
 
-                                                        string output = "----- Data Retrieved -----\n";
-                                                        foreach (Player item in players)
-                                                        {
-                                                            output += item.ToString() + "\n";
-                                                        }
-                                                        Popup("Results", output);
-                                                    }
-                                                    catch (Exception)
+                                                if (indexOfError != -1)
+                                                {
+                                                    int indexOfCoods = file.SoftIndexOf("	All players: ");
+                                                    if (indexOfCoods != -1)
                                                     {
-                                                        Popup("Error", "Parse Error");
+                                                        string unparsedLine = file[indexOfCoods];
+                                                        try
+                                                        {
+                                                            string startParsedLine = unparsedLine.Substring(unparsedLine.IndexOf("[") + 1);
+                                                            startParsedLine = startParsedLine.Remove(startParsedLine.Length - 1);
+                                                            string[] playersAsString = startParsedLine.Split("], ");
+                                                            List<Player> players = new List<Player>();
+                                                            foreach (string item in playersAsString)
+                                                            {
+                                                                players.Add(Player.Parse(item));
+                                                            }
+
+                                                            string output = "";
+                                                            foreach (Player item in players)
+                                                            {
+                                                                output += item.ToString() + "\n";
+                                                            }
+
+                                                            Window popupWindow = new Window();
+                                                            popupWindow.foregroundColor = ConsoleColor.Black;
+                                                            popupWindow.backgroundColor = ConsoleColor.DarkGray;
+                                                            popupWindow.size = new Size((mainWindow.size.width / 3) * 2, (mainWindow.size.height / 3) * 2);
+                                                            popupWindow.position = new Point(popupWindow.size.width / 4, popupWindow.size.height / 4);
+                                                            popupWindow.text = "Data Retrieved";
+                                                            popupWindow.Render();
+
+                                                            Label popupText = new Label();
+                                                            popupText.position = new Point(popupWindow.position.x + 1, popupWindow.position.y + 1);
+                                                            popupText.size = new Size(popupWindow.size.width - 3, popupWindow.size.height - 4);
+                                                            popupText.foregroundColor = popupWindow.foregroundColor;
+                                                            popupText.backgroundColor = popupWindow.backgroundColor;
+                                                            popupText.text = output;
+                                                            popupText.Render();
+
+                                                            Button exportButton = new Button();
+                                                            exportButton.position = new Point(popupWindow.position.x + 1, popupWindow.position.y + popupWindow.size.height - 2);
+                                                            exportButton.foregroundColor = popupWindow.foregroundColor;
+                                                            exportButton.backgroundColor = popupWindow.backgroundColor;
+                                                            exportButton.activeForegroundColor = popupWindow.backgroundColor;
+                                                            exportButton.activeBackgroundColor = popupWindow.foregroundColor;
+                                                            exportButton.active = true;
+                                                            exportButton.text = "Export";
+                                                            exportButton.Render();
+
+                                                            Button rawButton = new Button();
+                                                            rawButton.position = new Point(popupWindow.position.x + 1 + 10, popupWindow.position.y + popupWindow.size.height - 2);
+                                                            rawButton.foregroundColor = popupWindow.foregroundColor;
+                                                            rawButton.backgroundColor = popupWindow.backgroundColor;
+                                                            rawButton.activeForegroundColor = popupWindow.backgroundColor;
+                                                            rawButton.activeBackgroundColor = popupWindow.foregroundColor;
+                                                            rawButton.active = false;
+                                                            rawButton.text = "Raw";
+                                                            rawButton.Render();
+
+                                                            while (true)
+                                                            {
+                                                                if (Console.KeyAvailable)
+                                                                {
+                                                                    ConsoleKeyInfo tunnelConsoleKeyInfo = Console.ReadKey();
+                                                                    if (tunnelConsoleKeyInfo.Key == ConsoleKey.Escape)
+                                                                    {
+                                                                        mainWindow.Render();
+                                                                        listBox.Render();
+                                                                        break;
+                                                                    }
+                                                                    else if (tunnelConsoleKeyInfo.Key == ConsoleKey.LeftArrow)
+                                                                    {
+                                                                        exportButton.active = true;
+                                                                        rawButton.active = false;
+
+                                                                        exportButton.Render();
+                                                                        rawButton.Render();
+                                                                    }
+                                                                    else if (tunnelConsoleKeyInfo.Key == ConsoleKey.RightArrow)
+                                                                    {
+                                                                        exportButton.active = false;
+                                                                        rawButton.active = true;
+
+                                                                        exportButton.Render();
+                                                                        rawButton.Render();
+                                                                    }
+                                                                    else if (tunnelConsoleKeyInfo.Key == ConsoleKey.Enter)
+                                                                    {
+                                                                        if (exportButton.active)
+                                                                        {
+                                                                            string fl = Guid.NewGuid().ToString() + ".txt";
+                                                                            try
+                                                                            {
+                                                                                File.WriteAllText(fl, output);
+                                                                                mainWindow.Render();
+                                                                                listBox.Render();
+                                                                                Popup("Export", "Export successful, file saved as " + fl);
+                                                                            }
+                                                                            catch (Exception)
+                                                                            {
+                                                                                mainWindow.Render();
+                                                                                listBox.Render();
+                                                                                Popup("Error", "Export unsuccessful, due to error");
+                                                                            }
+                                                                            break;
+                                                                        }
+                                                                        else if (rawButton.active)
+                                                                        {
+                                                                            Console.Clear();
+                                                                            Console.SetCursorPosition(0, 0);
+                                                                            Console.WriteLine(output);
+                                                                            while (true)
+                                                                            {
+                                                                                if (Console.ReadKey().Key == ConsoleKey.Escape)
+                                                                                {
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            Process.GetCurrentProcess().Kill();
+                                                                        }
+                                                                    }
+                                                                    else if (tunnelConsoleKeyInfo.Modifiers == ConsoleModifiers.Control)
+                                                                    {
+                                                                        if (tunnelConsoleKeyInfo.Key == ConsoleKey.Q)
+                                                                        {
+                                                                            Process.GetCurrentProcess().Kill();
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            Popup("Error", "Parse Error");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        Popup("Error", "Minecraft debug.log playerdata missing");
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    Popup("Error", "Minecraft debug.log playerdata missing");
+                                                    Popup("Error", "Minecraft debug.log exception missing");
                                                 }
                                             }
-                                            else
+                                            catch (Exception)
                                             {
-                                                Popup("Error", "Minecraft debug.log exception missing");
+                                                Popup("Error", "Minecraft is already running, press and hold F3+C for 10 seconds on your minecraft client to crash it");
                                             }
                                         }
                                         else
@@ -206,7 +321,7 @@ namespace Debug_Player_Finder
                             }
                             else if (selectedItem == "Crash Minecraft")
                             {
-
+                                Popup("Crash Minecraft", "To raise an exception, switch to your minecraft window, press and hold F3+C for 10 seconds");
                             }
                         }
                     }

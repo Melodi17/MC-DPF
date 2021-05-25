@@ -1,0 +1,2 @@
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\publish\Debug Player Finder.pdb
+C:\Users\austi\source\repos\Debug Player Finder\Debug Player Finder\bin\Release\netcoreapp3.1\publish\Debug Player Finder.exe

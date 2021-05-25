@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "PqSHY3zhHmwCifn+ksaOBfw63nnlyZ1AWn37NQcoa+/GWicFT83CQSgv1+5JWHV8/4Zo1gNgxKrQR+s5XB5vzw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\austi\\source\\repos\\Debug Player Finder\\Debug Player Finder\\Debug Player Finder.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\austi\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\3.1.15\\microsoft.netcore.app.runtime.win-x86.3.1.15.nupkg.sha512",
+    "C:\\Users\\austi\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\3.1.15\\microsoft.windowsdesktop.app.runtime.win-x86.3.1.15.nupkg.sha512",
+    "C:\\Users\\austi\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\3.1.15\\microsoft.aspnetcore.app.runtime.win-x86.3.1.15.nupkg.sha512"
+  ],
+  "logs": []
+}
